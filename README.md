@@ -1,5 +1,4 @@
 # FormApp
-Author: Edita Narkuniene
 Description:
  - Form contains an intro window, four steps and a summary.
  - Only one question is visible at one time. One question depends on the answer of the previous.
