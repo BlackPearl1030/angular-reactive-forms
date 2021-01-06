@@ -1,0 +1,49 @@
+.progressbar {
+  display: flex;
+  position: relative;
+}
+
+.progressbar-row {
+  display: flex;
+  width: 100%;
+  list-style-type: unset;
+  padding: 0;
+}
+
+.progressbar-row:before {
+  top: 14px;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  content:" ";
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  z-index: 0;
+}
+
+.progressbar-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:#666;
+  padding: 0;
+}
+
+.progressbar-step .btn {
+  pointer-events: none;
+}
+
+.progressbar .btn.disabled, .progressbar .btn[disabled] {
+  opacity:1 !important;
+  color:#bbb;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0;
+  font-size: 12px;
+  border-radius: 15px;
+  margin-bottom: 5px;
+}

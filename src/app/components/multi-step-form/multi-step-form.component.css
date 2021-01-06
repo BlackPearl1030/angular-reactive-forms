@@ -1,0 +1,68 @@
+.fields-container {
+  margin-top: 20px;
+}
+
+.fields-container-item {
+  padding: 10px 0;
+}
+
+.field-controls-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.field-controls {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.field-controls .field-label {
+  font-size: 1.2em;
+}
+
+.field-label {
+  font-size: 1.5em;
+  line-height: 1.63;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+input {
+  height: 2.5em;
+}
+
+input[type=radio] {
+  box-shadow: none;
+  width: 30px;
+  height: 30px;
+  margin: 0 10px 0 0;
+}
+
+.validation-error {
+  color: #cc3c3c;
+  font-size: 0.85em;
+  margin-top: 5px;
+}
+
+.preview-container ul {
+  padding-left: 20px;
+}
+
+.form-details-list span:first-of-type {
+  padding-right: 5px;
+  font-weight: 700;
+}
+
+.form-details-list span:last-of-type {
+  word-break: break-word;
+}
+
+.button-container {
+  margin-top: 30px;
+}
+
+.button-container > .btn:not(:first-of-type) {
+  margin-left: 10px;
+}

@@ -1,0 +1,11 @@
+<nav class="progressbar">
+  <ul class="progressbar-row">
+    <li *ngFor="let item of stepItems; let i=index"
+        class="progressbar-step col-xs-12">
+        <a href="#" type="button"class="btn btn-default btn-circle" [ngClass]="{'btn-success active': currentStepIndex===i}" >
+          {{i+1}}
+        </a>
+      {{item.label}}
+    </li>
+  </ul>
+</nav>

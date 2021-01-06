@@ -1,0 +1,102 @@
+<div class="form-wrapper">
+  <ng-container *ngFor="let form of loanForm; let i = index; trackBy: trackByFn">
+    <form name="loanForm"
+        [formGroup]="loanForm[i]"
+        *ngIf="i === activeStepIndex || loanForm.length === 1">
+      <div class="fields-container">
+        <div *ngFor="let field of formFields[i]; trackBy: trackByFn"
+          [ngSwitch]="currentFormContent[i][field].type"
+          class="fields-container-item"
+        >
+          <label class="field-label text-uppercase" [for]="field">{{ field | formatTitle }}</label>
+          
+          <ng-container *ngSwitchDefault>
+            <input
+              [attr.disabled]="currentFormContent[i][field].disabled"
+              class="form-control"
+              [type]="currentFormContent[i][field].type"
+              [formControlName]="field"
+              [id]="field"
+              [placeholder]="currentFormContent[i][field].placeholder"
+            />
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'select'">
+            <select
+              (change)="onSelecOptionChange($event)"
+              [formControlName]="field"
+              [id]="field"
+              class="form-control">
+              <option value="">Select your answer</option>
+              <option
+                *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn"
+                [value]="option.name"
+                >{{ option.name }}</option>
+            </select>
+            <div *ngIf="selectedAnswer == 'YES'"
+                  class="field-controls-container">
+              <div class="field-controls">
+                <input
+                id="dependantsNumberOne"
+                class="form-control"
+                [formControlName]="field"
+                type="radio"
+                value="1" /> 
+                <label class="field-label" for="dependantsNumberOne">1</label>
+              </div>
+              <div class="field-controls">
+                <input
+                  id="dependantsNumberTwo"
+                  class="form-control"
+                  [formControlName]="field"
+                  type="radio"
+                  value="2" /> 
+                <label class="field-label" for="dependantsNumberTwo">2 or more</label>
+              </div>
+            </div>
+          </ng-container>
+
+          <p class="validation-error"
+            *ngIf="
+              (loanForm[i].get(field).dirty ||
+              loanForm[i].get(field).touched) &&
+              loanForm[i].get(field).invalid &&
+              loanForm[i].get(field).errors">
+            {{ getValidationMessage(i, field) }}
+          </p>
+        </div>
+      </div>
+      <div class="preview-container"
+        *ngIf="activeStepIndex === stepItems.length - 1">
+        <ul>
+          <li
+            class="form-details-list"
+            *ngFor="let field of loanFormFields; trackBy: trackByFn">
+            <span>{{ field | formatTitle }}:</span>
+            <span>{{ formData[field] || 'N/A' }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="button-container">
+        <button
+          class="btn btn-primary"
+          type="button"
+          [disabled]="!activeStepIndex"
+          (click)="goToStep('prev')"
+        >Previous</button>
+        <button
+          class="btn btn-primary"
+          type="button"
+          [disabled]="activeStepIndex === stepItems.length - 1 || loanForm[i].invalid"
+          (click)="goToStep('next')"
+        >Next</button>
+        <button
+          class="btn btn-success"
+          *ngIf="activeStepIndex === stepItems.length - 1"
+          type="button"
+          (click)="onFormSubmit()"
+        >Submit</button>
+      </div>
+    </form>
+  </ng-container>
+</div>
